@@ -1,6 +1,7 @@
 .aside {
- 
+	position: relative;
 	width: 6rem;
+	height: calc(100vh - 6rem);
 	border-right: 2px solid white;
 	margin-right: 2rem;
 }
@@ -9,10 +10,23 @@
 	text-align: center;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    margin-top: 2rem;
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.selected::before {
+	transition: all 2s ease-out;
+	content: '';
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	left: 0;
+	margin-top: -1rem;
+	z-index: -1;
+	height: 2rem;
+	background-color: #8b939c;
 }
