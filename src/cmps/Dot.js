@@ -1,15 +1,16 @@
-import classes from './DotColorPicker.module.css'
+import classes from './Dot.module.css'
 
-const DotColorPicker = function (props) {
+const Dot = function (props) {
 	return (
 		<button
-			onClick={props.selectedColor}
+			onClick={props.handleClick}
 			className={`${props.className} ${classes.dot}`}
 			style={{ backgroundColor: props.color, width: props.size, height: props.size }}
-			data-color={props.color}>
+			data-color={props.color}
+			data-id={props.id}>
 			{props.children}
 		</button>
 	)
 }
 
-export default DotColorPicker
+export default Dot

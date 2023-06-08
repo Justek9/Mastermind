@@ -1,26 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classes from './Aside.module.css'
-import DotColorPicker from './DotColorPicker'
-
-let colors = ['red', 'blue', 'green', 'yellow', 'violet', 'black']
+import Dot from './Dot'
+import GameContext from './GameContext'
 
 const Aside = function (props) {
-	const [selectedColor, setSelectedColor] = useState('red')
-
 	const selectedColorHandler = function (event) {
 		setSelectedColor(event.target.getAttribute('data-color'))
 	}
+
+	const { selectedColor, setSelectedColor, colors } = useContext(GameContext)
 
 	return (
 		<aside className={classes.aside}>
 			<p className={classes.paragraph}>Pick color</p>
 			<div className={classes.container}>
 				{colors.map((color, index) => (
-					<DotColorPicker
-						selectedColor={selectedColorHandler}
+					<Dot
+						handleClick={selectedColorHandler}
 						className={selectedColor === color ? classes.selected : ''}
 						color={color}
-						key={index}></DotColorPicker>
+						key={index}></Dot>
 				))}
 			</div>
 		</aside>

@@ -1,8 +1,24 @@
-import DotColorPicker from './DotColorPicker'
+import { useState, useContext } from 'react'
+import Dot from './Dot'
 import classes from './RoundDots.module.css'
+import GameContext from './GameContext'
 
 const RoundDots = function (props) {
-	const roundDots = new Array(4).fill(0).map((el, index) => <DotColorPicker key={index}></DotColorPicker>)
+	const { selectedColor, colors } = useContext(GameContext)
+
+	const colorPickHandler = function (event) {
+		props.setRowState(old =>
+			old.map((val, index) => {
+				if (index == event.target.getAttribute('data-id')) return colors.indexOf(selectedColor)
+				else return val
+			})
+		)
+	}
+
+	const roundDots = props.rowState.map((el, index) => (
+		<Dot id={index} key={index} handleClick={colorPickHandler} color={colors[props.rowState[index]]}></Dot>
+	))
+
 	return <div className={classes.container}>{roundDots}</div>
 }
 
