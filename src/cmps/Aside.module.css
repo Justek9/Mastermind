@@ -1,4 +1,5 @@
 .aside {
+ 
 	width: 6rem;
 	border-right: 2px solid white;
 	margin-right: 2rem;
@@ -6,4 +7,12 @@
 
 .paragraph {
 	text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
 }
