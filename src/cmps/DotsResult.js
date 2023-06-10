@@ -2,7 +2,7 @@ import Dot from './Dot'
 import classes from './DotsResult.module.css'
 
 const DotsResults = function (props) {
-	const dotsResult = new Array(4).fill(0).map((el, index) => <Dot key={index} size='1rem'></Dot>)
+	const dotsResult = props.dotsResult.map((color, index) => <Dot key={index} size='1rem' color={color}></Dot>)
 
 	return <div className={classes.container}>{dotsResult}</div>
 }
