@@ -7,7 +7,8 @@ const Dot = function (props) {
 			className={`${props.className} ${classes.dot}`}
 			style={{ backgroundColor: props.color, width: props.size, height: props.size }}
 			data-color={props.color}
-			data-id={props.id}>
+			data-id={props.id}
+			disabled={props.disabled}>
 			{props.children}
 		</button>
 	)

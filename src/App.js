@@ -17,10 +17,24 @@ function App() {
 		})
 	)
 
+	const [counter, setCounter] = useState(1)
+	const [isGameOver, setIsGameOver] = useState(false)
+
 	console.log(password)
 
+	let isDisabledFunc = function (index) {
+		if (isGameOver) return true
+		else if (index === counter - 1) return false
+		else return true
+	}
+
+	let gameRounds = new Array(counter)
+		.fill(0)
+		.map((el, index) => <GameRound key={index} disabled={isDisabledFunc(index)}></GameRound>)
+
 	return (
-		<GameContext.Provider value={{ selectedColor, password, setSelectedColor, setPassword, colors }}>
+		<GameContext.Provider
+			value={{ selectedColor, password, setSelectedColor, setPassword, colors, setCounter, counter, setIsGameOver }}>
 			<div className='App'>
 				<Header></Header>
 				<div className='container'>
@@ -28,7 +42,7 @@ function App() {
 					<GameBoard>
 						<p>Password:</p>
 						<DotPassword></DotPassword>
-						<GameRound></GameRound>
+						{gameRounds}
 					</GameBoard>
 				</div>
 			</div>

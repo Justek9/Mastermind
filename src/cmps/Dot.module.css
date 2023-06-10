@@ -8,3 +8,7 @@
 	/* background-color: white; */
 	/* margin: 2rem; */
 }
+
+.disabled {
+	background-color: black;
+}

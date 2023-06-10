@@ -6,7 +6,7 @@ import GameContext from './GameContext'
 
 const GameRound = function (props) {
 	const [rowState, setRowState] = useState([6, 6, 6, 6])
-	const { password } = useContext(GameContext)
+	const { password, setCounter, counter, setIsGameOver } = useContext(GameContext)
 	const [dotsResult, setDotsResult] = useState(['grey', 'grey', 'grey', 'grey'])
 
 	const tryHandler = function () {
@@ -37,11 +37,20 @@ const GameRound = function (props) {
 			} else tempResult.push('grey')
 		}
 		setDotsResult(prev => [...tempResult])
+		if (counter === 12) {
+			alert('GAME OVER. You lost.')
+			setIsGameOver(true)
+		} else if (tempResult.every(el => el === 'red')) {
+			alert('Congratulations! You won :)')
+			setIsGameOver(true)
+		} else {
+			setCounter(prev => prev + 1)
+		}
 	}
 	return (
 		<div className={classes.round}>
-			<RoundDots setRowState={setRowState} rowState={rowState}></RoundDots>
-			<button className={classes.btnTry} onClick={tryHandler}>
+			<RoundDots disabled={props.disabled} setRowState={setRowState} rowState={rowState}></RoundDots>
+			<button disabled={props.disabled} className={classes.btnTry} onClick={tryHandler}>
 				{' '}
 				Try
 			</button>

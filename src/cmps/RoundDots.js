@@ -16,7 +16,12 @@ const RoundDots = function (props) {
 	}
 
 	const roundDots = props.rowState.map((el, index) => (
-		<Dot id={index} key={index} handleClick={colorPickHandler} color={colors[props.rowState[index]]}></Dot>
+		<Dot
+			disabled={props.disabled}
+			id={index}
+			key={index}
+			handleClick={colorPickHandler}
+			color={colors[props.rowState[index]]}></Dot>
 	))
 
 	return <div className={classes.container}>{roundDots}</div>
